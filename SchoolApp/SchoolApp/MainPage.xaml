@@ -13,19 +13,30 @@
             Text="Welcome to SchoolApp"
             FontSize="32"
             HorizontalOptions="Center"/>
-        <Label Text="Name card"
-       FontSize="22"
-       FontAttributes="Bold" />
 
-        <Entry Text="{Binding Name}"
-       Placeholder="Edit your name" />
+        <Label
+            Text="Name card"
+            FontSize="22"
+            FontAttributes="Bold" />
 
-        <Label Text="{Binding Name}"
-       FontSize="20" />
+        <Entry
+            Text="{Binding Name}"
+            Placeholder="Edit your name" />
 
-        <Label Text="{Binding City}"
-       FontSize="16"
-       TextColor="Gray" />
+        <Label
+            Text="{Binding Name}"
+            FontSize="20" />
+
+        <Label
+            Text="{Binding City}"
+            FontSize="16"
+            TextColor="Gray" />
+
+        <!-- НОВАЯ КНОПКА -->
+        <Button
+            Text="Shout the name"
+            Clicked="OnShoutClicked" />
+
         <Button
             Text="Open students list"
             Clicked="OnOpenStudentsClicked"
