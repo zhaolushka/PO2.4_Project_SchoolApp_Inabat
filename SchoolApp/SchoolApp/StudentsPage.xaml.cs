@@ -1,28 +1,35 @@
+using SchoolApp.Models;
+using SchoolApp.ViewModels;
+
 namespace SchoolApp;
 
 public partial class StudentsPage : ContentPage
 {
+    private readonly StudentsViewModel _vm;
+
     public StudentsPage()
     {
         InitializeComponent();
 
-        StudentsList.ItemsSource = new[]
-        {
-            "Aida Tulegenova",
-            "Bekzat Sarsenov",
-            "Dana Iskakova",
-            "Erlan Nurpeisov",
-            "Madina Akhmetova"
-        };
+        _vm = new StudentsViewModel();
+
+        BindingContext = _vm;
     }
 
-    private async void OnStudentSelected(object sender, SelectionChangedEventArgs e)
+    private void OnAddClicked(object? sender, EventArgs e)
     {
-        if (e.CurrentSelection.FirstOrDefault() is not string name)
+        _vm.AddStudent();
+
+        NewNameEntry.Text = "";
+    }
+
+    private async void OnStudentSelected(object? sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is not Student student)
             return;
 
         await Shell.Current.GoToAsync(
-            $"{nameof(StudentDetailPage)}?name={Uri.EscapeDataString(name)}");
+            $"{nameof(StudentDetailPage)}?name={Uri.EscapeDataString(student.Name)}");
 
         StudentsList.SelectedItem = null;
     }
